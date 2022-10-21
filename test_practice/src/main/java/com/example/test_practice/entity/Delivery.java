@@ -2,6 +2,7 @@ package com.example.test_practice.entity;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -33,7 +34,7 @@ public class Delivery {
     private LocalDateTime deliveryDate;
 
 
-    @OneToMany(mappedBy = "delivery",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "delivery",fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
     private List<Plan> plants;
     
 
