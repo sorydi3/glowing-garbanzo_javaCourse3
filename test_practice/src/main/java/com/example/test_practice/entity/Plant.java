@@ -12,17 +12,22 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import org.hibernate.annotations.ManyToAny;
 import org.hibernate.annotations.Nationalized;
+
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Plant {
+
+    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Nationalized
+    @JsonView(PlantResponse.class)
     private String name;
 
     @Column(name = "price",precision = 10, scale = 2)
@@ -31,4 +36,9 @@ public class Plant {
     @ManyToOne
     @JoinColumn(name = "delivery_id")
     private Delivery delivery;
+
+    //Contructor
+    public Plant() {
+    }
+
 }

@@ -4,14 +4,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 public class Shrub extends Plant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @JsonView(PlantResponse.class)
     private float height;
+    @JsonView(PlantResponse.class)
     private float width;
 
     public Long getId() {

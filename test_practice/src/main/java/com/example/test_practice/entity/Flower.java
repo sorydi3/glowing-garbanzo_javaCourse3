@@ -3,8 +3,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Table(name = "plant")
@@ -14,6 +15,7 @@ public class Flower extends Plant {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonView(PlantResponse.class)
     private String color;
 
     public Long getId() {
