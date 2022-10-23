@@ -21,8 +21,6 @@ import com.fasterxml.jackson.annotation.JsonView;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Plant {
 
-    
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -31,15 +29,47 @@ public class Plant {
     @JsonView(PlantResponse.class)
     private String name;
 
-    @Column(name = "price",precision = 10, scale = 2)
+    @Column(name = "price", precision = 10, scale = 2)
     private BigDecimal price;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "delivery_id")
     private Delivery delivery;
 
-    //Contructor
+    // Contructor
     public Plant() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public Delivery getDelivery() {
+        return delivery;
+    }
+
+    public void setDelivery(Delivery delivery) {
+        this.delivery = delivery;
     }
 
 }

@@ -15,12 +15,11 @@ import org.hibernate.annotations.Type;
 
 import java.util.List;
 
-import org.h2.table.Plan;
 import org.hibernate.annotations.Nationalized;
 
-
 @Entity
- // lombok
+// lombok
+
 public class Delivery {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,13 +29,11 @@ public class Delivery {
     private String name;
     @Nationalized
     private String address;
-    @Column(name = "address_full",length = 500)
+    @Column(name = "address_full", length = 500)
     private LocalDateTime deliveryDate;
 
-
-    @OneToMany(mappedBy = "delivery",fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
-    private List<Plan> plants;
-    
+    @OneToMany(mappedBy = "delivery", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Plant> plants;
 
     @Type(type = "yes_no")
     private Boolean isDelivered;
@@ -85,5 +82,12 @@ public class Delivery {
         this.isDelivered = isDelivered;
     }
 
+    public List<Plant> getPlants() {
+        return this.plants;
+    }
+
+    public void setPlants(List<Plant> plants) {
+        this.plants = plants;
+    }
 
 }
