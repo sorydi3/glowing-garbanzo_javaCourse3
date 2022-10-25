@@ -1,5 +1,7 @@
 package com.example.test_practice.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,9 +19,16 @@ public class DeliveryService {
     }
 
     public Long scheduleDelivery(Delivery delivery) {
+
         delivery.getPlants().forEach(plant -> plant.setDelivery(delivery));
+
         deliveryRepository.persistDelivery(delivery);
+
         return delivery.getId();
+    }
+
+    public List<Delivery> getDeliveries() {
+        return deliveryRepository.findAll();
     }
 
 }

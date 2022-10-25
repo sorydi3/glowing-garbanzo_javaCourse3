@@ -1,40 +1,31 @@
 package com.example.test_practice.entity;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
+@Table(name = "shrub")
+@Getter
+@Setter
+// @NamedQuery(name = "Shrub.findAll", query = "SELECT s FROM Shrub s")
+// @NamedQuery(name = "Shrub.findByShrubId", query = "SELECT s FROM Shrub s
+// WHERE s.shrubId = :shrubId")
+// @NamedQuery(name = "Shrub.findByShrubName", query = "SELECT s FROM Shrub s
+// WHERE s.shrubName = :shrubName")
+
 public class Shrub extends Plant {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     @JsonView(PlantResponse.class)
     private float height;
     @JsonView(PlantResponse.class)
     private float width;
 
-    public Long getId() {
-        return id;
+    public Shrub() {
+        // TODO document why this constructor is empty
     }
-    public void setId(Long id) {
-        this.id = id;
-    }
-    public float getHeight() {
-        return height;
-    }
-    public void setHeight(float height) {
-        this.height = height;
-    }
-    public float getWidth() {
-        return width;
-    }
-    public void setWidth(float width) {
-        this.width = width;
-    }
-
-    
 }

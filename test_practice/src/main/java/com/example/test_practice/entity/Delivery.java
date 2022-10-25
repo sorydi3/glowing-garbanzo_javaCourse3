@@ -7,87 +7,53 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Type;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonView;
+
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.List;
 
+import org.h2.table.Plan;
 import org.hibernate.annotations.Nationalized;
 
 @Entity
-// lombok
-
+@Getter
+@Setter
+// @NamedQuery(name = "Delivery.findAll", query = "SELECT d FROM Delivery d")
+// @NamedQuery(name = "Delivery.findByDeliveryId", query = "SELECT d FROM
+// Delivery d WHERE d.deliveryId = :deliveryId")
+// @NamedQuery(name = "Delivery.findByDeliveryName", query = "SELECT d FROM
+// Delivery d WHERE d.deliveryName = :deliveryName")
 public class Delivery {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
 
     @Nationalized
+    @JsonView(PlantResponse.class)
     private String name;
+
     @Nationalized
+    @JsonView(PlantResponse.class)
     private String address;
+
     @Column(name = "address_full", length = 500)
+    @JsonView(PlantResponse.class)
     private LocalDateTime deliveryDate;
 
     @OneToMany(mappedBy = "delivery", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonView(PlantResponse.class)
     private List<Plant> plants;
 
     @Type(type = "yes_no")
+    @JsonView(PlantResponse.class)
     private Boolean isDelivered;
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getAddress() {
-        return this.address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public LocalDateTime getDeliveryDate() {
-        return this.deliveryDate;
-    }
-
-    public void setDeliveryDate(LocalDateTime deliveryDate) {
-        this.deliveryDate = deliveryDate;
-    }
-
-    public Boolean isIsDelivered() {
-        return this.isDelivered;
-    }
-
-    public Boolean getIsDelivered() {
-        return this.isDelivered;
-    }
-
-    public void setIsDelivered(Boolean isDelivered) {
-        this.isDelivered = isDelivered;
-    }
-
-    public List<Plant> getPlants() {
-        return this.plants;
-    }
-
-    public void setPlants(List<Plant> plants) {
-        this.plants = plants;
-    }
-
 }
