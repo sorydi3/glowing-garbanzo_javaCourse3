@@ -13,7 +13,6 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Type;
 
-import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import lombok.Getter;
@@ -21,15 +20,14 @@ import lombok.Setter;
 
 import java.util.List;
 
-import org.h2.table.Plan;
 import org.hibernate.annotations.Nationalized;
 
 @Entity
 @Getter
 @Setter
 // @NamedQuery(name = "Delivery.findAll", query = "SELECT d FROM Delivery d")
-// @NamedQuery(name = "Delivery.findByDeliveryId", query = "SELECT d FROM
-// Delivery d WHERE d.deliveryId = :deliveryId")
+// @NamedQuery(name = "Delivery.findByDeliveryId", query = "SELECT d
+// FROMDelivery d WHERE d.deliveryId = :deliveryId")
 // @NamedQuery(name = "Delivery.findByDeliveryName", query = "SELECT d FROM
 // Delivery d WHERE d.deliveryName = :deliveryName")
 public class Delivery {
