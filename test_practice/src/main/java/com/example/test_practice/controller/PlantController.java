@@ -3,7 +3,6 @@ package com.example.test_practice.controller;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +39,7 @@ public class PlantController {
     public Boolean checkIfPlantDelivered(@RequestParam String id) {
         System.out.println("id: " + id);
         planService.checkIfPlantDelivered(Long.valueOf(id));
+
         return true;
     }
 
