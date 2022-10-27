@@ -1,15 +1,17 @@
 package com.example.test_practice.repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
+import java.math.BigDecimal;
+import java.util.List;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 
-@Repository
-@Transactional
-public class PlanRepository {
-    @PersistenceContext
-    EntityManager entityManager;
+import com.example.test_practice.entity.Plant;
 
+public interface PlanRepository extends CrudRepository<Plant, Long> {
+
+    @Query("select new java.lang.Boolean(p.delivery.isDelivered) from Plant p where p.id = :plantId")
+    Boolean deliveryCompletedBoolean(Long plantId);
+
+    List<Plant> findByPriceLessThan(BigDecimal price);
 }
