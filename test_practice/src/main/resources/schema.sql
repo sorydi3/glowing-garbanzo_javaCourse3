@@ -1,0 +1,14 @@
+CREATE TABLE IF NOT EXISTS candy (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    PRIMARY KEY (id)
+);
+CREATE TABLE IF NOT EXISTS candy_order (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    candy_id bigint NOT NULL,
+    delivery_id bigint NOT NULL,
+    FOREIGN KEY (candy_id) REFERENCES candy(id) ON DELETE CASCADE,
+    FOREIGN KEY (delivery_id) REFERENCES delivery(id) ON DELETE CASCADE,
+    PRIMARY KEY (id)
+) ENGINE = MyISAM;
