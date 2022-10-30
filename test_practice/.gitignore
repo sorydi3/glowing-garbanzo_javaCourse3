@@ -72,6 +72,11 @@ lerna-debug.log*
 *.rar
 *.gz
 
+### hide sencible data ###
+.env
+config/DataSourceConfig.java
+
+
 
 
 

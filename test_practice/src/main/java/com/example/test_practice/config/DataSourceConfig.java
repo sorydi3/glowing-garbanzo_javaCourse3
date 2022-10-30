@@ -20,7 +20,7 @@ public class DataSourceConfig {
 
     private String SecurePasswordGenerator() {
 
-        return "root";
+        return "Ibrahima22";
     }
 
 }
